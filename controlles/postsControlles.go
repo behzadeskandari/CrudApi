@@ -94,3 +94,10 @@ func PostsUpdate(ctx *gin.Context) {
 	})
 
 }
+func PostsDelete(ctx *gin.Context) {
+	id := ctx.Param("id")
+
+	initilizaers.DB.Delete(&model.Post{}, id)
+
+	ctx.Status(200)
+}
