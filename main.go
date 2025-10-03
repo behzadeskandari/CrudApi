@@ -23,7 +23,9 @@ func main() {
 	fmt.Println("Hello")
 
 	r := gin.Default()
-
 	r.POST("/post", controlles.PostsCreate)
+	r.PUT("/post/:id", controlles.PostsUpdate)
+	r.GET("/post", controlles.PostsIndex)
+	r.GET("/post/:id", controlles.PostsShow)
 	r.Run()
 }

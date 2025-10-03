@@ -1,6 +1,7 @@
 package initilizaers
 
 import (
+	model "CrudApi/models"
 	"log"
 	"os"
 
@@ -27,8 +28,7 @@ func ConnectToDB() {
 	sqlDB, _ := DB.DB()
 	sqlDB.Ping()
 
-	// Migrate
-	// if err := DB.AutoMigrate(&model.Post{}); err != nil {
-	// 	log.Fatal("❌ Migrate failed:", err)
-	// }
+	if err := DB.AutoMigrate(&model.Post{}); err != nil {
+		log.Fatal("❌ Migrate failed:", err)
+	}
 }
