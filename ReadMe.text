@@ -1,0 +1,19 @@
+envrioment Setup
+ go mod init CrudApi
+ go get github.com/githubnemo/CompileDaemon
+ go get github.com/joho/godotenv
+
+ ginWebFrameWOrk
+
+go get github.com/gin-gonic/gin
+
+GoRM ORM 
+go get -u gorm.io/gorm
+
+go get -u gorm.io/driver/postgres
+
+> go install github.com/githubnemo/CompileDaemon@latest
+PS D:\repo\goRepo\CrudApi> CompileDaemon -command="./CrudApi"
+
+
+CompileDaemon -command="./CrudApi"
