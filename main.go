@@ -1,25 +1,29 @@
 package main
 
 import (
+	"CrudApi/controlles"
 	"CrudApi/initilizaers"
 	"fmt"
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
 
 func init() {
 	initilizaers.LoadEnvVariables()
-	initilizaers.ConnectToDB()
+
 }
 func main() {
+	initilizaers.ConnectToDB()
+
+	if initilizaers.DB == nil {
+		log.Fatal("DB is still nil after ConnectToDB!")
+	}
+	log.Println("✅ DB initialized successfully")
 	fmt.Println("Hello")
 
 	r := gin.Default()
 
-	r.GET("/", func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	r.POST("/post", controlles.PostsCreate)
 	r.Run()
 }

@@ -17,3 +17,9 @@ PS D:\repo\goRepo\CrudApi> CompileDaemon -command="./CrudApi"
 
 
 CompileDaemon -command="./CrudApi"
+
+
+
+db port 5432
+
+go run migrate/migrate.go

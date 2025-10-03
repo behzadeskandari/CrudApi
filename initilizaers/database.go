@@ -12,9 +12,23 @@ var DB *gorm.DB
 
 func ConnectToDB() {
 	dsn := os.Getenv("DB_URL")
-	DB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		log.Fatal("Failed to connect to database")
+	if dsn == "" {
+		log.Fatal("❌ DB_URL empty!")
 	}
-	log.Println("Connected to database %T", DB)
+
+	var err error
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{}) // Assign to global (no :=)
+	if err != nil {
+		log.Fatal("❌ Connect failed:", err)
+	}
+	log.Printf("Connected: %T", DB)
+
+	// Ping
+	sqlDB, _ := DB.DB()
+	sqlDB.Ping()
+
+	// Migrate
+	// if err := DB.AutoMigrate(&model.Post{}); err != nil {
+	// 	log.Fatal("❌ Migrate failed:", err)
+	// }
 }
